@@ -16,15 +16,25 @@ $usuarios = array($email);
 
  
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
 	if (empty($_POST["nome"])) {
 	  $nomeError = "O campo nome não pode estar vazio.";
 	} else {
 	  $nome = test_input($_POST["nome"]);
-	  if (!preg_match("/^[a-zA-Z-' [0-]*$/",$nome)) {
-		$nomeError = "O campo nome deve conter entre 3 e 50 caracteres, dgite apenas letras e espaço em branco";
-	  }
-	}
+		if (!preg_match("/^[a-zA-Z-' [0-]*$/",$nome)) {
+			$nomeError = "O campo nome deve conter entre 3 e 50 caracteres, digite apenas letras e espaço em branco";
+		}
+		if(strlen($nome)<3){
+		
+			$nomeError = "O campo nome deve conter entre 3 e 50 caracteres, digite apenas letras e espaço em branco";
+		}
+		if(strlen($nome)>50){
+			
+			$nomeError = "O campo nome deve conter entre 3 e 50 caracteres, digite apenas letras e espaço em branco";
+		}
+		}
+		
+		
 
 	if (empty($_POST["email"])) {
 		$emailError = "O campo e-mail não pode estar vazio.";
@@ -58,11 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		else {
 			$confirmacao_senhaError = "O campo senha e confirmação de senha não conferem.";
 		}
-  }
-  
-
-}
-
+  	} 
 
 ?>
 
